@@ -6,19 +6,19 @@ import { Audio, AvailableAudios } from '@/types/audio';
 import { client } from '@/api/client';
 
 type AudioIcons = {
-  [key in AvailableAudios]: Icon
+  [key in AvailableAudios]: React.ReactElement
 }
 
 const ICONS: AudioIcons = {
-  rain: IconCloudRain,
-  wind: IconWind,
-  thunderstorm: IconCloudStorm,
-  beach: IconBeach,
-  campfire: IconCampfire,
-  night: IconMoonStars,
-  nature: IconTrees,
-  cafe: IconCoffee,
-  city: IconBuildingCommunity
+  rain: <IconCloudRain />,
+  wind: <IconWind />,
+  thunderstorm: <IconCloudStorm />,
+  beach: <IconBeach />,
+  campfire: <IconCampfire />,
+  night: <IconMoonStars />,
+  nature: <IconTrees />,
+  cafe: <IconCoffee />,
+  city: <IconBuildingCommunity />
 }
 
 export function AudioMenu() {
@@ -40,8 +40,8 @@ export function AudioMenu() {
   return (
     <Stack display="inline-flex" h="100%" justify="center">
       {availableAudios && availableAudios.map((audio) => (
-        <AudioButton key={audio.name}>
-          <IconCloudRain />
+        <AudioButton key={audio.name} src={audio.mediaUrl}>
+          {ICONS[audio.name]}
         </AudioButton>
       ))}
     </Stack>
