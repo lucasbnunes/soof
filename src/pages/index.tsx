@@ -1,13 +1,15 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '@/styles/Home.module.css'
-import { Button, Title } from '@mantine/core'
-
-
-
+import { AudioButton } from '@/components/AudioButton';
+import { Container, Stack } from '@mantine/core'
+import { IconCloudRain } from '@tabler/icons-react';
 
 export default function Home() {
   return (
-    <Title>Hello</Title>
+    <Container fluid h="100vh">
+      <Stack display="inline-flex" h="100%" justify="center">
+        <AudioButton>
+          <IconCloudRain />
+        </AudioButton>
+      </Stack>
+    </Container>
   )
 }
