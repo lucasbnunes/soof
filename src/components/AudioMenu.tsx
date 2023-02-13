@@ -40,7 +40,7 @@ export function AudioMenu() {
   return (
     <Stack display="inline-flex" h="100%" justify="center">
       {availableAudios && availableAudios.map((audio) => (
-        <AudioButton key={audio.name} src={audio.mediaUrl}>
+        <AudioButton key={audio.name} audio={audio}>
           {ICONS[audio.name]}
         </AudioButton>
       ))}
