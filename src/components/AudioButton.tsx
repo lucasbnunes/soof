@@ -3,9 +3,10 @@ import { ActionIcon, ActionIconProps, Flex, MantineStyleSystemProps, Transition 
 import { Audio } from "./Audio";
 import { AudioControls } from "./AudioControls";
 import { useClickOutside } from '@mantine/hooks';
+import { Audio as AudioType } from "@/types/audio";
 
 interface AudioButtonProps {
-  src: string;
+  audio: AudioType;
 }
 
 interface ButtonStyles {
@@ -24,7 +25,7 @@ const buttonStyles: ButtonStyles = {
   }
 }
 
-export function AudioButton({ src, children }: React.PropsWithChildren<AudioButtonProps>) {
+export function AudioButton({ audio, children }: React.PropsWithChildren<AudioButtonProps>) {
   const audioElement = React.useRef<HTMLAudioElement | null>(null)
   const [controlIsOpen, setControlIsOpen] = React.useState(false)
   const [isPlaying, setIsPlaying] = React.useState(false)
@@ -46,7 +47,7 @@ export function AudioButton({ src, children }: React.PropsWithChildren<AudioButt
 
   return (
     <Flex ref={ref} gap="lg">
-      <ActionIcon title="Sound title" onClick={handleClick} {...buttonStyles[isPlaying ? "active" : "inactive"]} size="xl" sx={{ '& > svg': { width: '2rem', height: '2rem' } }}>
+      <ActionIcon title={audio.name} onClick={handleClick} {...buttonStyles[isPlaying ? "active" : "inactive"]} size="xl" sx={{ '& > svg': { width: '2rem', height: '2rem' } }}>
         {children}
       </ActionIcon>
 
@@ -56,7 +57,7 @@ export function AudioButton({ src, children }: React.PropsWithChildren<AudioButt
         }
       </Transition>
 
-      <Audio ref={audioElement} src={src} />
+      <Audio ref={audioElement} src={audio.mediaUrl} />
     </Flex>
   )
 

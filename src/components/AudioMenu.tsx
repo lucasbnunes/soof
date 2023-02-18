@@ -38,9 +38,9 @@ export function AudioMenu() {
   }
 
   return (
-    <Stack display="inline-flex" h="100%" justify="center">
+    <Stack display="inline-flex" justify="center" pos="fixed" left="16px" top="50%" sx={{ transform: "translateY(-50%)" }}>
       {availableAudios && availableAudios.map((audio) => (
-        <AudioButton key={audio.name} src={audio.mediaUrl}>
+        <AudioButton key={audio.name} audio={audio}>
           {ICONS[audio.name]}
         </AudioButton>
       ))}
