@@ -23,7 +23,7 @@ export interface Image {
     "small_s3": string;
   };
   user: {
-    username: string;
+    name: string;
     links: {
       html: string;
     }
