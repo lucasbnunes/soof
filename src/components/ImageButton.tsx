@@ -8,10 +8,10 @@ interface ImageButtonProps {
 }
 
 export function ImageButton({ image, onClick }: ImageButtonProps) {
-  const { setBackground } = useBackground()
+  const { changeBackground } = useBackground()
 
   function handleClick() {
-    setBackground(image.urls.full)
+    changeBackground(image.urls.full)
     onClick()
   }
 
