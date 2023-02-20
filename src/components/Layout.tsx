@@ -1,5 +1,5 @@
 import { Container } from "@mantine/core";
-import { BackgroundImage } from "./BackgroundImage";
+import { BackgroundImage } from "../features/background/BackgroundImage";
 
 export function Layout({ children }: React.PropsWithChildren) {
 

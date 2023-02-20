@@ -37,7 +37,7 @@ export function SearchImageModal({ isOpen, onClose }: SearchImageModalProps) {
       <ScrollArea.Autosize maxHeight={isDesktop ? 720 : 560}>
         <Box px="lg">
           <form onSubmit={handleSubmit}>
-            <TextInput placeholder="Search image..." aria-label='Search image' value={search} onChange={({ target }) => setSearch(target.value)} rightSection={<ActionIcon type="submit"><IconSearch size={16} /></ActionIcon>} />
+            <TextInput placeholder="Search image..." aria-label='Search image' value={search} onChange={({ target }) => setSearch(target.value)} rightSection={<ActionIcon type="submit"><IconSearch size={16} /></ActionIcon>} data-autofocus />
           </form>
           <Anchor href="https://unsplash.com/" target="_blank" size="xs" display="block" ta="center" mt={2} color="gray.6">Powered by Unsplash</Anchor>
 

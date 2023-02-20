@@ -20,8 +20,8 @@ const buttonStyles: ButtonStyles = {
     variant: "light"
   },
   inactive: {
-    color: "blue.0",
-    variant: "transparent"
+    color: "gray",
+    variant: "subtle"
   }
 }
 

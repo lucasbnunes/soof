@@ -1,6 +1,6 @@
-import { AudioMenu } from '@/components/AudioMenu';
+import { AudioMenu } from '@/features/audio/AudioMenu';
 import { Layout } from '@/components/Layout';
-import { SearchImageModal } from '@/components/SearchImageModal';
+import { SearchImageModal } from '@/features/background/SearchImageModal';
 import { Box, Button } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
 import React from 'react';
