@@ -4,6 +4,7 @@ import { Icon, IconBeach, IconBuildingCommunity, IconCampfire, IconCloudRain, Ic
 import { AudioButton } from "./AudioButton";
 import { Audio, AvailableAudios } from '@/types/audio';
 import { client } from '@/api/client';
+import { useAudio } from '@/hooks/useAudio';
 
 type AudioIcons = {
   [key in AvailableAudios]: React.ReactElement
@@ -22,20 +23,7 @@ const ICONS: AudioIcons = {
 }
 
 export function AudioMenu() {
-  const [availableAudios, setAvailableAudios] = React.useState<Audio[]>([])
-
-  React.useEffect(() => {
-    fetchAvailableAudios()
-  }, [])
-
-  async function fetchAvailableAudios() {
-    try {
-      const { data } = await client.get('audios')
-      setAvailableAudios(data)
-    } catch (e) {
-      console.error(e)
-    }
-  }
+  const { availableAudios } = useAudio()
 
   return (
     <Stack display="inline-flex" justify="center" pos="fixed" left="16px" top="50%" sx={{ transform: "translateY(-50%)" }}>
