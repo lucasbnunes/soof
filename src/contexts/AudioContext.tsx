@@ -7,7 +7,7 @@ interface AudioContextValue {
   isLoading: boolean;
 }
 
-export const AudioContext = React.createContext({} as AudioContextValue)
+const AudioContext = React.createContext({} as AudioContextValue)
 
 export function AudioContextProvider({ children }: React.PropsWithChildren) {
   const [availableAudios, setAvailableAudios] = React.useState<Audio[]>([])
@@ -32,3 +32,5 @@ export function AudioContextProvider({ children }: React.PropsWithChildren) {
 
   return <AudioContext.Provider value={{ availableAudios, isLoading }}>{children}</AudioContext.Provider>
 }
+
+export const useAudioContext = () => React.useContext(AudioContext)

@@ -3,7 +3,7 @@ import { ActionIcon, ActionIconProps, Flex, Transition } from "@mantine/core";
 import { AudioControls } from "./AudioControls";
 import { useClickOutside } from '@mantine/hooks';
 import { Audio as AudioType } from "@/types/audio";
-import { useAudio } from "@/hooks/useAudio";
+import { useAudioElement } from "@/hooks/useAudioElement";
 
 interface AudioButtonProps {
   audio: AudioType;
@@ -26,7 +26,7 @@ const buttonStyles: ButtonStyles = {
 }
 
 export function AudioButton({ audio, children }: React.PropsWithChildren<AudioButtonProps>) {
-  const { play, pause, changeVolume, isPlaying, volume } = useAudio(audio.mediaUrl)
+  const { play, pause, changeVolume, isPlaying, volume } = useAudioElement(audio.mediaUrl)
   const [controlIsOpen, setControlIsOpen] = React.useState(false)
   const ref = useClickOutside(() => setControlIsOpen(false))
 
