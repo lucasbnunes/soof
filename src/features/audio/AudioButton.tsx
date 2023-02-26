@@ -1,9 +1,9 @@
 import React from "react";
-import { ActionIcon, ActionIconProps, Flex, MantineStyleSystemProps, Transition } from "@mantine/core";
-import { Audio } from "./Audio";
+import { ActionIcon, ActionIconProps, Flex, Transition } from "@mantine/core";
 import { AudioControls } from "./AudioControls";
 import { useClickOutside } from '@mantine/hooks';
 import { Audio as AudioType } from "@/types/audio";
+import { useAudioElement } from "@/hooks/useAudioElement";
 
 interface AudioButtonProps {
   audio: AudioType;
@@ -26,24 +26,14 @@ const buttonStyles: ButtonStyles = {
 }
 
 export function AudioButton({ audio, children }: React.PropsWithChildren<AudioButtonProps>) {
-  const audioElement = React.useRef<HTMLAudioElement | null>(null)
+  const { play, pause, changeVolume, isPlaying, volume } = useAudioElement(audio.mediaUrl, audio.name)
   const [controlIsOpen, setControlIsOpen] = React.useState(false)
-  const [isPlaying, setIsPlaying] = React.useState(false)
   const ref = useClickOutside(() => setControlIsOpen(false))
 
   function handleClick() {
+    play()
     setControlIsOpen((value) => !value)
   }
-
-  function handlePlay() {
-    setIsPlaying(true)
-  }
-
-  function handlePause() {
-    setIsPlaying(false)
-  }
-
-
 
   return (
     <Flex ref={ref} gap="lg">
@@ -53,11 +43,9 @@ export function AudioButton({ audio, children }: React.PropsWithChildren<AudioBu
 
       <Transition mounted={controlIsOpen} transition="pop-bottom-left" duration={200} timingFunction="ease">
         {(styles) =>
-          <AudioControls audioElement={audioElement.current} onPlay={handlePlay} onPause={handlePause} transitionStyles={styles} />
+          <AudioControls onVolumeChange={changeVolume} volume={volume} onPlay={play} onPause={pause} isPlaying={isPlaying} transitionStyles={styles} />
         }
       </Transition>
-
-      <Audio ref={audioElement} src={audio.mediaUrl} />
     </Flex>
   )
 
