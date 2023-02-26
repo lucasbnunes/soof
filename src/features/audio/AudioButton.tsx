@@ -26,7 +26,7 @@ const buttonStyles: ButtonStyles = {
 }
 
 export function AudioButton({ audio, children }: React.PropsWithChildren<AudioButtonProps>) {
-  const { play, pause, changeVolume, isPlaying, volume } = useAudioElement(audio.mediaUrl, audio.name)
+  const { play, pause, changeVolume, isPlaying, volume } = useAudioElement(audio.mediaUrl)
   const [controlIsOpen, setControlIsOpen] = React.useState(false)
   const ref = useClickOutside(() => setControlIsOpen(false))
 
