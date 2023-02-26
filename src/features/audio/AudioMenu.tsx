@@ -25,7 +25,7 @@ export function AudioMenu() {
   const { availableAudios, isLoading } = useAudioContext()
 
   return (
-    <Stack display="inline-flex" justify="center" pos="fixed" left="16px" top="50%" sx={{ transform: "translateY(-50%)" }}>
+    <Stack display="inline-flex" justify="center" pos="absolute" left="16px" top="50%" sx={{ transform: "translateY(-50%)" }}>
 
       {isLoading &&
         <>
