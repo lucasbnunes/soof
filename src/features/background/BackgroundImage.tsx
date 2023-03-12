@@ -2,7 +2,7 @@ import { useBackground } from "@/hooks/useBackground";
 import { Image, Loader } from "@mantine/core";
 
 export function BackgroundImage() {
-  const { background, onFinishLoading, isLoading } = useBackground()
+  const { background, onFinishLoading, isLoading, opacity } = useBackground()
 
   return (
     <>
@@ -18,7 +18,7 @@ export function BackgroundImage() {
           inset={0}
           width="100vw"
           height="100vh"
-          opacity={0.7}
+          opacity={opacity}
           sx={{ objectFit: "cover", height: "100vh", visibility: isLoading ? "hidden" : "visible" }}
 
           onLoad={onFinishLoading}

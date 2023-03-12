@@ -1,8 +1,10 @@
+import { useBackground } from "@/hooks/useBackground";
 import { Image as UnsplashImage, SearchResponseMetadata, useUnsplash } from "@/hooks/useUnsplash";
 import { Modal, ScrollArea, Box, TextInput, ActionIcon, SimpleGrid, Text, Image, Anchor, Pagination, Flex, Skeleton, Button, UnstyledButton } from "@mantine/core";
 import { useMediaQuery, usePagination } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons-react";
 import React from "react";
+import { BackgroundSettings } from "./BackgroundSettings";
 import { ImageButton } from "./ImageButton";
 
 interface SearchImageModalProps {
@@ -17,6 +19,7 @@ export function SearchImageModal({ isOpen, onClose }: SearchImageModalProps) {
   const [images, setImages] = React.useState<UnsplashImage[]>([])
   const [searchResponse, setSearchResponse] = React.useState<SearchResponseMetadata>()
   const { searchImages, isLoading } = useUnsplash()
+  const { background } = useBackground()
 
   async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
@@ -35,9 +38,22 @@ export function SearchImageModal({ isOpen, onClose }: SearchImageModalProps) {
   return (
     <Modal opened={isOpen} onClose={onClose} size={isDesktop ? 'xl' : 'md'}>
       <ScrollArea.Autosize maxHeight={isDesktop ? 720 : 560}>
+
+
+
         <Box px="lg">
+          <Box mb="lg">
+            <BackgroundSettings />
+          </Box>
+
           <form onSubmit={handleSubmit}>
-            <TextInput placeholder="Search image..." aria-label='Search image' value={search} onChange={({ target }) => setSearch(target.value)} rightSection={<ActionIcon type="submit"><IconSearch size={16} /></ActionIcon>} data-autofocus />
+            <TextInput
+              placeholder="Search image..."
+              aria-label='Search image'
+              value={search}
+              onChange={({ target }) => setSearch(target.value)}
+              rightSection={<ActionIcon type="submit"><IconSearch size={16} /></ActionIcon>}
+              data-autofocus={background ? undefined : true} />
           </form>
           <Anchor href="https://unsplash.com/" target="_blank" size="xs" display="block" ta="center" mt={2} color="gray.6">Powered by Unsplash</Anchor>
 
@@ -46,7 +62,7 @@ export function SearchImageModal({ isOpen, onClose }: SearchImageModalProps) {
               <SimpleGrid mt="xl" cols={isDesktop ? 4 : 2}>
                 {images.map((img) => {
                   return (
-                    <ImageButton key={img.id} image={img} onClick={onClose} />
+                    <ImageButton key={img.id} image={img} />
                   )
                 })}
 

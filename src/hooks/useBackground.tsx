@@ -2,7 +2,7 @@ import React from "react"
 import { BackgroundContext } from "@/contexts/BackgroundContext"
 
 export function useBackground() {
-  const { background, setBackground, isLoading, setIsLoading } = React.useContext(BackgroundContext)
+  const { background, setBackground, isLoading, setIsLoading, opacity, setOpacity } = React.useContext(BackgroundContext)
 
   function removeBackground() {
     setBackground("")
@@ -22,6 +22,8 @@ export function useBackground() {
     background,
     changeBackground,
     removeBackground,
-    onFinishLoading
+    onFinishLoading,
+    opacity,
+    setOpacity,
   }
 }
