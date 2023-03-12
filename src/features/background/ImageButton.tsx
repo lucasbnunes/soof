@@ -4,10 +4,10 @@ import { Flex, UnstyledButton, Anchor, Image } from "@mantine/core";
 
 interface ImageButtonProps {
   image: UnsplashImage
-  onClick: () => void
+  onClick?: () => void
 }
 
-export function ImageButton({ image, onClick }: ImageButtonProps) {
+export function ImageButton({ image, onClick = () => { } }: ImageButtonProps) {
   const { changeBackground } = useBackground()
 
   function handleClick() {
